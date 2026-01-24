@@ -34,7 +34,7 @@ jobs:
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
     - name: Upload Release Asset
       if: github.event_name == 'release'
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0.1
       with:
           files: '*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -64,7 +64,7 @@ jobs:
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
     - name: Upload Release Asset
       if: github.event_name == 'release'
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0.1
       with:
           files: '*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -94,7 +94,7 @@ jobs:
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
     - name: Upload Release Asset
       if: github.event_name == 'release'
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0.1
       with:
           files: '*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -124,7 +124,7 @@ jobs:
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
     - name: Upload Release Asset
       if: github.event_name == 'release'
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0.1
       with:
           files: '*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -152,7 +152,7 @@ jobs:
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
     - name: Upload Release Asset
       if: github.event_name == 'release'
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0.1
       with:
           files: '*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -180,7 +180,7 @@ jobs:
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
     - name: Upload Release Asset
       if: github.event_name == 'release'
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0.1
       with:
           files: '*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -208,7 +208,7 @@ jobs:
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
     - name: Upload Release Asset
       if: github.event_name == 'release'
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0.1
       with:
           files: '*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -236,7 +236,7 @@ jobs:
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
     - name: Upload Release Asset
       if: github.event_name == 'release'
-      uses: AButler/upload-release-assets@v2.0
+      uses: AButler/upload-release-assets@v3.0.1
       with:
           files: '*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
