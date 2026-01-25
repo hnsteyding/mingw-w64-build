@@ -36,8 +36,8 @@ jobs:
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
       with:
-          files: '*.tar.gz'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: '*.tar.gz'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   build_mingw_toolchain_msvcrt_linux_i686:
     name: MinGW-w64 MSVCRT Linux i686
@@ -66,8 +66,8 @@ jobs:
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
       with:
-          files: '*.tar.gz'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: '*.tar.gz'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   build_mingw_toolchain_ucrt_linux_x86_64:
     name: MinGW-w64 UCRT Linux x86_64
@@ -96,8 +96,8 @@ jobs:
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
       with:
-          files: '*.tar.gz'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: '*.tar.gz'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   build_mingw_toolchain_ucrt_linux_i686:
     name: MinGW-w64 UCRT Linux i686
@@ -126,8 +126,8 @@ jobs:
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
       with:
-          files: '*.tar.gz'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: '*.tar.gz'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   build_mingw_toolchain_msvcrt_mac_x86-64:
     name: MinGW-w64 MSVCRT macOS x86_64
@@ -154,8 +154,8 @@ jobs:
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
       with:
-          files: '*.tar.gz'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: '*.tar.gz'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   build_mingw_toolchain_msvcrt_mac_i686:
     name: MinGW-w64 MSVCRT macOS i686
@@ -182,8 +182,8 @@ jobs:
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
       with:
-          files: '*.tar.gz'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: '*.tar.gz'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   build_mingw_toolchain_ucrt_mac_x86-64:
     name: MinGW-w64 UCRT macOS x86_64
@@ -210,8 +210,8 @@ jobs:
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
       with:
-          files: '*.tar.gz'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: '*.tar.gz'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
 
   build_mingw_toolchain_ucrt_mac_i686:
     name: MinGW-w64 UCRT macOS i686
@@ -238,5 +238,5 @@ jobs:
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
       with:
-          files: '*.tar.gz'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+        files: '*.tar.gz'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
