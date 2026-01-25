@@ -74,14 +74,22 @@ jobs:
           echo "Package cache miss."
         fi
         chmod +x mingw-w64-build
-        ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        SUCCESS=false
+        if ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"; then
+          SUCCESS=true
+        fi
         tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
-          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
-        ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
-        ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
-        ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
-        tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log") || true
+        if [[ "${SUCCESS}" == true ]]; then
+          ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
+          ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
+          ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
+          tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+        else
+          exit 1
+        fi
     - name: Archive Build Logs Artifact
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
@@ -125,14 +133,22 @@ jobs:
           echo "Package cache miss."
         fi
         chmod +x mingw-w64-build
-        ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        SUCCESS=false
+        if ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"; then
+          SUCCESS=true
+        fi
         tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
-          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
-        ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
-        ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
-        ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
-        tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log") || true
+        if [[ "${SUCCESS}" == true ]]; then
+          ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
+          ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
+          ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
+          tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+        else
+          exit 1
+        fi
     - name: Archive Build Logs Artifact
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
@@ -176,14 +192,22 @@ jobs:
           echo "Package cache miss."
         fi
         chmod +x mingw-w64-build
-        ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        SUCCESS=false
+        if ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"; then
+          SUCCESS=true
+        fi
         tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
-          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
-        ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
-        ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
-        ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
-        tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log") || true
+        if [[ "${SUCCESS}" == true ]]; then
+          ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
+          ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
+          ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
+          tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+        else
+          exit 1
+        fi
     - name: Archive Build Logs Artifact
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
@@ -227,14 +251,22 @@ jobs:
           echo "Package cache miss."
         fi
         chmod +x mingw-w64-build
-        ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        SUCCESS=false
+        if ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"; then
+          SUCCESS=true
+        fi
         tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
-          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
-        ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
-        ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
-        ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
-        tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log") || true
+        if [[ "${SUCCESS}" == true ]]; then
+          ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
+          ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
+          ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
+          tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+        else
+          exit 1
+        fi
     - name: Archive Build Logs Artifact
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
@@ -276,14 +308,22 @@ jobs:
           echo "Package cache miss."
         fi
         chmod +x mingw-w64-build
-        ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        SUCCESS=false
+        if ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"; then
+          SUCCESS=true
+        fi
         tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
-          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
-        ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
-        ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
-        ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
-        tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log") || true
+        if [[ "${SUCCESS}" == true ]]; then
+          ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
+          ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
+          ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
+          tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+        else
+          exit 1
+        fi
     - name: Archive Build Logs Artifact
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
@@ -325,14 +365,22 @@ jobs:
           echo "Package cache miss."
         fi
         chmod +x mingw-w64-build
-        ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        SUCCESS=false
+        if ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"; then
+          SUCCESS=true
+        fi
         tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
-          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
-        ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
-        ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
-        ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
-        tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log") || true
+        if [[ "${SUCCESS}" == true ]]; then
+          ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
+          ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
+          ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
+          tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+        else
+          exit 1
+        fi
     - name: Archive Build Logs Artifact
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
@@ -374,14 +422,22 @@ jobs:
           echo "Package cache miss."
         fi
         chmod +x mingw-w64-build
-        ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        SUCCESS=false
+        if ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"; then
+          SUCCESS=true
+        fi
         tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
-          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
-        ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
-        ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
-        ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
-        tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log") || true
+        if [[ "${SUCCESS}" == true ]]; then
+          ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
+          ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
+          ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
+          tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+        else
+          exit 1
+        fi
     - name: Archive Build Logs Artifact
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
@@ -423,14 +479,22 @@ jobs:
           echo "Package cache miss."
         fi
         chmod +x mingw-w64-build
-        ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        SUCCESS=false
+        if ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"; then
+          SUCCESS=true
+        fi
         tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
-          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
-        ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
-        ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
-        ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
-        tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log") || true
+        if [[ "${SUCCESS}" == true ]]; then
+          ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
+          ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
+          ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
+          tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+        else
+          exit 1
+        fi
     - name: Archive Build Logs Artifact
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
