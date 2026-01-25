@@ -209,6 +209,7 @@ targets:
   x86_64
   x86_64.clean
   x86_64.distclean
+  download
   pkgclean
 default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${GCC_VER}"
 
@@ -414,21 +415,6 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
         return 0
     fi
 
-    # dependencies
-    local DEPS
-    DEPS=("bison" "bzip2" "curl" "flex" "g++" "gcc" "gunzip" "m4" "make" "pax" "shasum|sha256sum")
-    check_dependencies "${DEPS[@]}" || return 1
-
-    # sha256 binary
-    local SHA256
-    if hash shasum >/dev/null 2>&1; then
-        SHA256="shasum -a 256"
-    elif hash sha256sum >/dev/null 2>&1; then
-        SHA256="sha256sum"
-    else
-        return 1
-    fi
-
     # target args
     local TARGET_PARAM TARGET_DIR TARGET_i686 TARGET_x86_64 PREFIX_i686 PREFIX_x86_64 TARGET PREFIX
     TARGET_PARAM="${1}"
@@ -451,6 +437,10 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
             TARGET="${TARGET_x86_64}"
             PREFIX="${PREFIX_x86_64}"
             ;;
+        download)
+            TARGET="download"
+            PREFIX="download"
+            ;;
         pkgclean)
             TARGET="pkgclean"
             PREFIX="pkgclean"
@@ -463,6 +453,25 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
     fi
     if [[ "${TARGET_DIR:-}" == "" ]]; then
         TARGET_DIR="${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-${MSVCRT}-gcc-${GCC_VER}"
+    fi
+
+    # dependencies
+    local DEPS
+    if [[ "${TARGET_PARAM}" == "download" ]]; then
+        DEPS=("curl" "shasum|sha256sum")
+    else
+        DEPS=("bison" "bzip2" "curl" "flex" "g++" "gcc" "gunzip" "m4" "make" "pax" "shasum|sha256sum")
+    fi
+    check_dependencies "${DEPS[@]}" || return 1
+
+    # sha256 binary
+    local SHA256
+    if hash shasum >/dev/null 2>&1; then
+        SHA256="shasum -a 256"
+    elif hash sha256sum >/dev/null 2>&1; then
+        SHA256="sha256sum"
+    else
+        return 1
     fi
 
     # create target directory
@@ -506,28 +515,31 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
     esac
 
     # remove non-reusable directories
-    local CLEAN_INDEX CLEAN_TOTAL
-    CLEAN_INDEX=0
-    CLEAN_TOTAL=2
-    if [[ "${FORCE}" == true ]]; then
+    if [[ "${TARGET_PARAM}" != "download" ]]; then
+        local CLEAN_INDEX CLEAN_TOTAL
+        CLEAN_INDEX=0
+        CLEAN_TOTAL=2
+        if [[ "${FORCE}" == true ]]; then
+            CLEAN_INDEX=$((CLEAN_INDEX+1))
+            CLEAN_TOTAL=$((CLEAN_TOTAL+1))
+            printf "Cleaning    [%02i/%02i] dist " "${CLEAN_INDEX}" "${CLEAN_TOTAL}"
+            rm -rf "${MINGW_W64_DIR}"
+            echo ""
+        elif [[ -e "${MINGW_W64_DIR}" ]]; then
+            # prefix dir should not exist
+            echo "unable to create directory (exists): ${MINGW_W64_DIR}" >&2
+            echo "remove with: ${SELF_NAME} ${TARGET_PARAM%%.*}.distclean${2:+ $2}" >&2
+            return 1
+        fi
         CLEAN_INDEX=$((CLEAN_INDEX+1))
-        CLEAN_TOTAL=$((CLEAN_TOTAL+1))
-        printf "Cleaning    [%02i/%02i] dist " "${CLEAN_INDEX}" "${CLEAN_TOTAL}"
-        rm -rf "${MINGW_W64_DIR}"
+        printf "Cleaning    [%02i/%02i] source " "${CLEAN_INDEX}" "${CLEAN_TOTAL}"
+        rm -rf "${SOURCE_DIR}"
+        CLEAN_INDEX=$((CLEAN_INDEX+1))
         echo ""
-    elif [[ -e "${MINGW_W64_DIR}" ]]; then
-        # prefix dir should not exist
-        echo "unable to create directory (exists): ${MINGW_W64_DIR}" >&2
-        echo "remove with: ${SELF_NAME} ${TARGET_PARAM%%.*}.distclean${2:+ $2}" >&2
-        return 1
+        printf "Cleaning    [%02i/%02i] build " "${CLEAN_INDEX}" "${CLEAN_TOTAL}"
+        rm -rf "${BUILD_DIR}"
+        echo ""
     fi
-    CLEAN_INDEX=$((CLEAN_INDEX+1))
-    printf "Cleaning    [%02i/%02i] source " "${CLEAN_INDEX}" "${CLEAN_TOTAL}"
-    rm -rf "${SOURCE_DIR}"
-    CLEAN_INDEX=$((CLEAN_INDEX+1))
-    echo ""
-    printf "Cleaning    [%02i/%02i] build " "${CLEAN_INDEX}" "${CLEAN_TOTAL}"
-    rm -rf "${BUILD_DIR}"
 
     # verify/fetch
     mkdir -p "${PKG_DIR}"
@@ -538,7 +550,7 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
     local DOWNLOAD_VERBOSE I URLS_IREF URLS CHECKSUM
     DOWNLOAD_VERBOSE=false
     for I in "${!PKGS[@]}"; do
-        echo ""
+        if [[ "${I}" -gt 0 ]]; then echo ""; fi
         printf "Downloading [%02i/%02i] %s " "$((I+1))" "${#PKGS[@]}" "${NAMES[I]} ${VERSIONS[I]}"
         URLS_IREF="${URLS_VARNAMES[I]}[@]"
         URLS="${!URLS_IREF}"
@@ -554,6 +566,9 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
             return 1
         fi
     done
+    if [[ "${TARGET_PARAM}" == "download" ]]; then
+        return 0
+    fi
 
     # extract
     mkdir -p "${SOURCE_DIR}"
