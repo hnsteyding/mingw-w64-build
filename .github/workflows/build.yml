@@ -28,10 +28,18 @@ jobs:
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
         chmod +x mingw-w64-build
         ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
         ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
         ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
         ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+    - name: Archive Build Logs Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
+        path: |
+          ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar
     - name: Upload Release Asset
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
@@ -58,10 +66,18 @@ jobs:
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
         chmod +x mingw-w64-build
         ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
         ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
         ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
         ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+    - name: Archive Build Logs Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
+        path: |
+          ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar
     - name: Upload Release Asset
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
@@ -88,10 +104,18 @@ jobs:
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
         chmod +x mingw-w64-build
         ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
         ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
         ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
         ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+    - name: Archive Build Logs Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
+        path: |
+          ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar
     - name: Upload Release Asset
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
@@ -118,10 +142,18 @@ jobs:
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
         chmod +x mingw-w64-build
         ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
         ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
         ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
         ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+    - name: Archive Build Logs Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
+        path: |
+          ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar
     - name: Upload Release Asset
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
@@ -146,10 +178,18 @@ jobs:
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
         chmod +x mingw-w64-build
         ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
         ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
         ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
         ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+    - name: Archive Build Logs Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
+        path: |
+          ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar
     - name: Upload Release Asset
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
@@ -174,10 +214,18 @@ jobs:
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
         chmod +x mingw-w64-build
         ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
         ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
         ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
         ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+    - name: Archive Build Logs Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
+        path: |
+          ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar
     - name: Upload Release Asset
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
@@ -202,10 +250,18 @@ jobs:
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
         chmod +x mingw-w64-build
         ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
         ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
         ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
         ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+    - name: Archive Build Logs Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
+        path: |
+          ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar
     - name: Upload Release Asset
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
@@ -230,10 +286,18 @@ jobs:
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
         chmod +x mingw-w64-build
         ./mingw-w64-build --force --msvcrt="${BUILD_MSVCRT}" "${BUILD_ARCH}" "${BUILD_TUPLE}"
+        tar -cvf ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar \
+          $(find "${BUILD_TUPLE}"/build-* -type f -name "*.log")
         ./mingw-w64-build "${BUILD_ARCH}".clean "${BUILD_TUPLE}"
         ./mingw-w64-build pkgclean "${BUILD_TUPLE}"
         ./mingw-w64-build --list > "${BUILD_TUPLE}"/versions.txt
         tar -cvzf "${BUILD_TUPLE}".tar.gz "${BUILD_TUPLE}"
+    - name: Archive Build Logs Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
+        path: |
+          ${{ github.job }}-logs-${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}.tar
     - name: Upload Release Asset
       if: github.event_name == 'release'
       uses: AButler/upload-release-assets@v3.0.1
