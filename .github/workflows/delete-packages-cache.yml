@@ -1,0 +1,35 @@
+name: Delete Packages Cache
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+
+jobs:
+
+  delete_linux_packages_cache:
+    name: Delete Linux Packages Cache
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+    - name: Delete Packages Cache
+      run: |
+        gh cache delete pkg-linux-${{ github.ref }}-${{ case(github.event.workflow_run.event == 'pull_request', github.event.workflow_run.event.pull_request.head.sha, github.sha) }}
+      env:
+        GH_TOKEN: ${{ github.token }}
+        GH_REPO: ${{ github.repository }}
+
+  delete_macos_packages_cache:
+    name: Delete macOS Packages Cache
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+    - name: Delete Packages Cache
+      run: |
+        gh cache delete pkg-macos-${{ github.ref }}-${{ case(github.event.workflow_run.event == 'pull_request', github.event.workflow_run.event.pull_request.head.sha, github.sha) }}
+      env:
+        GH_TOKEN: ${{ github.token }}
+        GH_REPO: ${{ github.repository }}
