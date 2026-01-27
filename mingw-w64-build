@@ -197,8 +197,8 @@ where:
         number of concurrent build jobs to run
         default: 0 (automatic)
   --msvcrt
-        msvc runtime version (msvcrt or ucrt)
-        default: msvcrt
+        msvc runtime version (ucrt or msvcrt)
+        default: ucrt
   --disable-gdb
         disable building GDB debugger
 targets:
@@ -210,14 +210,14 @@ targets:
   x86_64.distclean
   download
   pkgclean
-default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${GCC_VER}"
+default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-ucrt-gcc-${GCC_VER}"
 
     # args
     local FORCE JOBS LIST DISABLE_GDB OPTIND OPTSPEC OPTARRAY
     FORCE=false
     JOBS=0
     LIST=false
-    MSVCRT="msvcrt"
+    MSVCRT="ucrt"
     DISABLE_GDB=false
     OPTIND=1
     OPTSPEC=":-:hlvfj:"
@@ -298,8 +298,8 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
                             return 1
                         fi
                         MSVCRT="${!OPTIND}"
-                        if [[ "${MSVCRT}" != "msvcrt" ]] && [[ "${MSVCRT}" != "ucrt" ]]; then
-                            echo "Option --${OPTARG} value must be msvcrt or ucrt" >&2
+                        if [[ "${MSVCRT}" != "ucrt" ]] && [[ "${MSVCRT}" != "msvcrt" ]]; then
+                            echo "Option --${OPTARG} value must be ucrt or msvcrt" >&2
                             echo -e "${HELP}"
                             return 1
                         fi
@@ -308,8 +308,8 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
                     msvcrt=*)
                         # MSVC runtime
                         MSVCRT="${OPTARG#*=}"
-                        if [[ "${MSVCRT}" != "msvcrt" ]] && [[ "${MSVCRT}" != "ucrt" ]]; then
-                            echo "Option --${OPTARG} value must be msvcrt or ucrt" >&2
+                        if [[ "${MSVCRT}" != "ucrt" ]] && [[ "${MSVCRT}" != "msvcrt" ]]; then
+                            echo "Option --${OPTARG} value must be ucrt or msvcrt" >&2
                             echo -e "${HELP}"
                             return 1
                         fi
