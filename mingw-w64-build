@@ -570,6 +570,7 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
         fi
     done
     if [[ "${TARGET_PARAM}" == "download" ]]; then
+        echo ""
         return 0
     fi
 
