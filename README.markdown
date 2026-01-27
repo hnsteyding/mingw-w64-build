@@ -41,6 +41,7 @@ Available targets:
 - `x86_64`
 - `x86_64.clean`
 - `x86_64.distclean`
+- `download`
 - `pkgclean`
 
 Default installation directory is `~/toolchains/mingw-w64-<version>-<msvcrt>-gcc-<gcc_version>`.
