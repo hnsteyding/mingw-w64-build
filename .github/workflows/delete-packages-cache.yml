@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Delete Packages Cache
       run: |
-        gh cache delete pkg-linux-${{ github.event.workflow_run.head_sha }}-${{ github.event.workflow_run.event.ref }}
+        gh cache delete pkg-linux-${{ github.event.workflow_run.head_sha }}-${{ github.event.workflow_run.id }}
       env:
         GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
@@ -29,7 +29,7 @@ jobs:
     steps:
     - name: Delete Packages Cache
       run: |
-        gh cache delete pkg-macos-${{ github.event.workflow_run.head_sha }}-${{ github.event.workflow_run.event.ref }}
+        gh cache delete pkg-macos-${{ github.event.workflow_run.head_sha }}-${{ github.event.workflow_run.id }}
       env:
         GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
