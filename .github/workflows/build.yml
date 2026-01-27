@@ -100,7 +100,7 @@ jobs:
       uses: AButler/upload-release-assets@v3.0.1
       with:
         files: '*.tar.gz'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
 
   build_mingw_toolchain_msvcrt_linux_i686:
     name: MinGW-w64 MSVCRT Linux i686
@@ -159,7 +159,7 @@ jobs:
       uses: AButler/upload-release-assets@v3.0.1
       with:
         files: '*.tar.gz'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
 
   build_mingw_toolchain_ucrt_linux_x86_64:
     name: MinGW-w64 UCRT Linux x86_64
@@ -218,7 +218,7 @@ jobs:
       uses: AButler/upload-release-assets@v3.0.1
       with:
         files: '*.tar.gz'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
 
   build_mingw_toolchain_ucrt_linux_i686:
     name: MinGW-w64 UCRT Linux i686
@@ -277,7 +277,7 @@ jobs:
       uses: AButler/upload-release-assets@v3.0.1
       with:
         files: '*.tar.gz'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
 
   build_mingw_toolchain_msvcrt_mac_x86-64:
     name: MinGW-w64 MSVCRT macOS x86_64
@@ -334,7 +334,7 @@ jobs:
       uses: AButler/upload-release-assets@v3.0.1
       with:
         files: '*.tar.gz'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
 
   build_mingw_toolchain_msvcrt_mac_i686:
     name: MinGW-w64 MSVCRT macOS i686
@@ -391,7 +391,7 @@ jobs:
       uses: AButler/upload-release-assets@v3.0.1
       with:
         files: '*.tar.gz'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
 
   build_mingw_toolchain_ucrt_mac_x86-64:
     name: MinGW-w64 UCRT macOS x86_64
@@ -448,7 +448,7 @@ jobs:
       uses: AButler/upload-release-assets@v3.0.1
       with:
         files: '*.tar.gz'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
 
   build_mingw_toolchain_ucrt_mac_i686:
     name: MinGW-w64 UCRT macOS i686
@@ -505,7 +505,7 @@ jobs:
       uses: AButler/upload-release-assets@v3.0.1
       with:
         files: '*.tar.gz'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ github.token }}
 
   delete_packages_cache_linux:
     name: Delete Packages Cache Linux
@@ -519,7 +519,7 @@ jobs:
       run: |
         gh cache delete mingw-w64-build-packages-linux-${{ github.run_id }}-${{ github.run_number }}
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
 
   delete_packages_cache_macos:
@@ -534,5 +534,5 @@ jobs:
       run: |
         gh cache delete mingw-w64-build-packages-macos-${{ github.run_id }}-${{ github.run_number }}
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
