@@ -24,7 +24,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-linux-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-linux-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
 
   create_macos_packages_cache:
     name: Create macOS Packages Cache
@@ -41,7 +41,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-macos-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-macos-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
 
   build_mingw_toolchain_msvcrt_linux_x86_64:
     name: MinGW-w64 MSVCRT Linux x86_64
@@ -57,7 +57,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-linux-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-linux-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
     - name: Build Toolchain
       run: |
         BUILD_PREFIX="mingw-w64-toolchain"
@@ -116,7 +116,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-linux-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-linux-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
     - name: Build Toolchain
       run: |
         BUILD_PREFIX="mingw-w64-toolchain"
@@ -175,7 +175,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-linux-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-linux-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
     - name: Build Toolchain
       run: |
         BUILD_PREFIX="mingw-w64-toolchain"
@@ -234,7 +234,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-linux-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-linux-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
     - name: Build Toolchain
       run: |
         BUILD_PREFIX="mingw-w64-toolchain"
@@ -290,7 +290,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-macos-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-macos-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
     - name: Build Toolchain
       run: |
         export MACOSX_DEPLOYMENT_TARGET="10.13"
@@ -347,7 +347,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-macos-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-macos-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
     - name: Build Toolchain
       run: |
         export MACOSX_DEPLOYMENT_TARGET="10.13"
@@ -404,7 +404,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-macos-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-macos-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
     - name: Build Toolchain
       run: |
         export MACOSX_DEPLOYMENT_TARGET="10.13"
@@ -461,7 +461,7 @@ jobs:
       uses: actions/cache@v5.0.2
       with:
         path: .
-        key: pkg-macos-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
+        key: pkg-macos-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}-${{ github.ref }}
     - name: Build Toolchain
       run: |
         export MACOSX_DEPLOYMENT_TARGET="10.13"
