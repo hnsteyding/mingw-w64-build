@@ -23,7 +23,7 @@ jobs:
 
   delete_macos_packages_cache:
     name: Delete macOS Packages Cache
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     permissions:
       actions: write
     steps:
