@@ -23,13 +23,14 @@ Usage
 The basic syntax is:
 
 ```
-mingw-w64-build [-f | --force] [-j # | --jobs #] [--disable-gdb] target [install-dir]
+mingw-w64-build [-f | --force] [-j # | --jobs #] [--msvcrt runtime] [--disable-gdb] target [install-dir]
 ```
 
 Where:
 
 - `-f, --force` remove and replace existing target (overwrite)
 - `-j, --jobs` number of concurrent build jobs to run, default: 0 (automatic)
+- `--msvcrt` msvc runtime version (ucrt or msvcrt), default: ucrt
 - `--disable-gdb` disable building GDB debugger
 
 Available targets:
@@ -42,7 +43,7 @@ Available targets:
 - `x86_64.distclean`
 - `pkgclean`
 
-Default installation directory is `~/toolchains/mingw-w64-<version>-gcc-<gcc_version>`.
+Default installation directory is `~/toolchains/mingw-w64-<version>-<msvcrt>-gcc-<gcc_version>`.
 
 Example: build both `i686` and `x86_64` targets, then remove source and build files and downloaded packages, leaving only the output.
 
