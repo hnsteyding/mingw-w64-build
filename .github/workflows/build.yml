@@ -67,6 +67,7 @@ jobs:
         BUILD_PLATFORM="linux"
         BUILD_ARCH="x86_64"
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
+        mkdir "${BUILD_TUPLE}"
         if [[ -d pkg ]]; then
           echo "Package cache hit."
           mv pkg "${BUILD_TUPLE}"/ || exit 1
@@ -126,6 +127,7 @@ jobs:
         BUILD_PLATFORM="linux"
         BUILD_ARCH="i686"
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
+        mkdir "${BUILD_TUPLE}"
         if [[ -d pkg ]]; then
           echo "Package cache hit."
           mv pkg "${BUILD_TUPLE}"/ || exit 1
@@ -185,6 +187,7 @@ jobs:
         BUILD_PLATFORM="linux"
         BUILD_ARCH="x86_64"
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
+        mkdir "${BUILD_TUPLE}"
         if [[ -d pkg ]]; then
           echo "Package cache hit."
           mv pkg "${BUILD_TUPLE}"/ || exit 1
@@ -244,6 +247,7 @@ jobs:
         BUILD_PLATFORM="linux"
         BUILD_ARCH="i686"
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
+        mkdir "${BUILD_TUPLE}"
         if [[ -d pkg ]]; then
           echo "Package cache hit."
           mv pkg "${BUILD_TUPLE}"/ || exit 1
@@ -301,6 +305,7 @@ jobs:
         BUILD_PLATFORM="macos"
         BUILD_ARCH="x86_64"
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
+        mkdir "${BUILD_TUPLE}"
         if [[ -d pkg ]]; then
           echo "Package cache hit."
           mv pkg "${BUILD_TUPLE}"/ || exit 1
@@ -358,6 +363,7 @@ jobs:
         BUILD_PLATFORM="macos"
         BUILD_ARCH="i686"
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
+        mkdir "${BUILD_TUPLE}"
         if [[ -d pkg ]]; then
           echo "Package cache hit."
           mv pkg "${BUILD_TUPLE}"/ || exit 1
@@ -415,6 +421,7 @@ jobs:
         BUILD_PLATFORM="macos"
         BUILD_ARCH="x86_64"
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
+        mkdir "${BUILD_TUPLE}"
         if [[ -d pkg ]]; then
           echo "Package cache hit."
           mv pkg "${BUILD_TUPLE}"/ || exit 1
@@ -472,6 +479,7 @@ jobs:
         BUILD_PLATFORM="macos"
         BUILD_ARCH="i686"
         BUILD_TUPLE="${BUILD_PREFIX}-${BUILD_VERSION}-${BUILD_MSVCRT}-${BUILD_PLATFORM}-${BUILD_ARCH}"
+        mkdir "${BUILD_TUPLE}"
         if [[ -d pkg ]]; then
           echo "Package cache hit."
           mv pkg "${BUILD_TUPLE}"/ || exit 1
