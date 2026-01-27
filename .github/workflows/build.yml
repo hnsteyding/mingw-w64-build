@@ -9,8 +9,8 @@ on:
 
 jobs:
 
-  download_packages_linux:
-    name: Download And Cache Packages Linux
+  create_linux_packages_cache:
+    name: Create Linux Packages Cache
     runs-on: ubuntu-latest
     if: github.event_name != 'release'
     steps:
@@ -19,15 +19,15 @@ jobs:
       run: |
         chmod +x mingw-w64-build
         ./mingw-w64-build download .
-    - name: Save Packages Cache
+    - name: Cache Packages
       id: cache-packages-save
       uses: actions/cache@v5.0.2
       with:
         path: .
         key: pkg-linux-${{ github.ref }}-${{ case(github.event_name == 'pull_request', github.event.pull_request.head.sha, github.sha) }}
 
-  download_packages_macos:
-    name: Download And Cache Packages macOS
+  create_macos_packages_cache:
+    name: Create macOS Packages Cache
     runs-on: ubuntu-latest
     if: github.event_name != 'release'
     steps:
@@ -36,7 +36,7 @@ jobs:
       run: |
         chmod +x mingw-w64-build
         ./mingw-w64-build download .
-    - name: Save Packages Cache
+    - name: Cache Packages
       id: cache-packages-save
       uses: actions/cache@v5.0.2
       with:
@@ -46,7 +46,7 @@ jobs:
   build_mingw_toolchain_msvcrt_linux_x86_64:
     name: MinGW-w64 MSVCRT Linux x86_64
     runs-on: ubuntu-latest
-    needs: download_packages_linux
+    needs: create_linux_packages_cache
     steps:
     - uses: actions/checkout@v6
     - name: Environment Setup
@@ -105,7 +105,7 @@ jobs:
   build_mingw_toolchain_msvcrt_linux_i686:
     name: MinGW-w64 MSVCRT Linux i686
     runs-on: ubuntu-latest
-    needs: download_packages_linux
+    needs: create_linux_packages_cache
     steps:
     - uses: actions/checkout@v6
     - name: Environment Setup
@@ -164,7 +164,7 @@ jobs:
   build_mingw_toolchain_ucrt_linux_x86_64:
     name: MinGW-w64 UCRT Linux x86_64
     runs-on: ubuntu-latest
-    needs: download_packages_linux
+    needs: create_linux_packages_cache
     steps:
     - uses: actions/checkout@v6
     - name: Environment Setup
@@ -223,7 +223,7 @@ jobs:
   build_mingw_toolchain_ucrt_linux_i686:
     name: MinGW-w64 UCRT Linux i686
     runs-on: ubuntu-latest
-    needs: download_packages_linux
+    needs: create_linux_packages_cache
     steps:
     - uses: actions/checkout@v6
     - name: Environment Setup
@@ -282,7 +282,7 @@ jobs:
   build_mingw_toolchain_msvcrt_mac_x86-64:
     name: MinGW-w64 MSVCRT macOS x86_64
     runs-on: macos-14
-    needs: download_packages_macos
+    needs: create_macos_packages_cache
     steps:
     - uses: actions/checkout@v6
     - name: Restore Packages Cache
@@ -339,7 +339,7 @@ jobs:
   build_mingw_toolchain_msvcrt_mac_i686:
     name: MinGW-w64 MSVCRT macOS i686
     runs-on: macos-14
-    needs: download_packages_macos
+    needs: create_macos_packages_cache
     steps:
     - uses: actions/checkout@v6
     - name: Restore Packages Cache
@@ -396,7 +396,7 @@ jobs:
   build_mingw_toolchain_ucrt_mac_x86-64:
     name: MinGW-w64 UCRT macOS x86_64
     runs-on: macos-14
-    needs: download_packages_macos
+    needs: create_macos_packages_cache
     steps:
     - uses: actions/checkout@v6
     - name: Restore Packages Cache
@@ -453,7 +453,7 @@ jobs:
   build_mingw_toolchain_ucrt_mac_i686:
     name: MinGW-w64 UCRT macOS i686
     runs-on: macos-14
-    needs: download_packages_macos
+    needs: create_macos_packages_cache
     steps:
     - uses: actions/checkout@v6
     - name: Restore Packages Cache
@@ -507,8 +507,8 @@ jobs:
         files: '*.tar.gz'
         repo-token: ${{ github.token }}
 
-  delete_packages_cache_linux:
-    name: Delete Packages Cache Linux
+  delete_linux_packages_cache:
+    name: Delete Linux Packages Cache
     runs-on: ubuntu-latest
     needs: [build_mingw_toolchain_msvcrt_linux_x86_64, build_mingw_toolchain_msvcrt_linux_i686, build_mingw_toolchain_ucrt_linux_x86_64, build_mingw_toolchain_ucrt_linux_i686]
     permissions:
@@ -522,8 +522,8 @@ jobs:
         GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
 
-  delete_packages_cache_macos:
-    name: Delete Packages Cache macOS
+  delete_macos_packages_cache:
+    name: Delete macOS Packages Cache
     runs-on: ubuntu-latest
     needs: [build_mingw_toolchain_msvcrt_mac_x86-64, build_mingw_toolchain_msvcrt_mac_i686, build_mingw_toolchain_ucrt_mac_x86-64, build_mingw_toolchain_ucrt_mac_i686]
     permissions:
