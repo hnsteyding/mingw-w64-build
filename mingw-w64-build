@@ -551,18 +551,21 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-msvcrt-gcc-${
     DOWNLOAD_VERBOSE=false
     for I in "${!PKGS[@]}"; do
         if [[ "${I}" -gt 0 ]]; then echo ""; fi
-        if [[ -e "${PKG_DIR}/${PKGS[I]}" ]]; then
-            printf "Verifying   [%02i/%02i] %s " "$((I+1))" "${#PKGS[@]}" "${NAMES[I]} ${VERSIONS[I]}"
-        fi
         URLS_IREF="${URLS_VARNAMES[I]}[@]"
         URLS="${!URLS_IREF}"
-        CHECKSUM=$(${SHA256} "${PKG_DIR}/${PKGS[I]}" 2>/dev/null | awk '{ print $1 }')
+        CHECKSUM=""
+        if [[ -e "${PKG_DIR}/${PKGS[I]}" ]]; then
+            printf "Verifying   [%02i/%02i] %s " "$((I+1))" "${#PKGS[@]}" "${NAMES[I]} ${VERSIONS[I]}"
+            CHECKSUM=$(${SHA256} "${PKG_DIR}/${PKGS[I]}" 2>/dev/null | awk '{ print $1 }')
+            if [[ "${CHECKSUM}" != "${CHECKSUMS[I]}" ]]; then
+                echo ""
+            fi
+        fi
         if [[ "${CHECKSUM}" != "${CHECKSUMS[I]}" ]] >/dev/null 2>&1; then
-            echo ""
             printf "Downloading [%02i/%02i] %s " "$((I+1))" "${#PKGS[@]}" "${NAMES[I]} ${VERSIONS[I]}"
             download_url "${DOWNLOAD_VERBOSE}" "${PKG_DIR}/${PKGS[I]}" ${URLS[@]} || return 1
+            CHECKSUM=$(${SHA256} "${PKG_DIR}/${PKGS[I]}" 2>/dev/null | awk '{ print $1 }')
         fi
-        CHECKSUM=$(${SHA256} "${PKG_DIR}/${PKGS[I]}" 2>/dev/null | awk '{ print $1 }')
         if [[ "${CHECKSUM}" != "${CHECKSUMS[I]}" ]]; then
             echo "checksum mismatch for package: ${PKG_DIR}/${PKGS[I]}" >&2
             echo "expected: ${CHECKSUMS[I]}" >&2
