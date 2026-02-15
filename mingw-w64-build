@@ -806,9 +806,8 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-ucrt-gcc-${GC
     echo "  (e.g., .bashrc or .bash_profile) to make persistent across sessions:"
     echo "    export PATH=\"${MINGW_W64_DIR}/bin:\${PATH}\""
     echo "Complete."
-    return 0
-
     set +o pipefail
+    return 0
 }
 
 trap die_gracefully EXIT INT TERM
