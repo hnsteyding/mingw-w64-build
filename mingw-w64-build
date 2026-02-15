@@ -393,7 +393,7 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-ucrt-gcc-${GC
     [[ "${JOBS}" -eq 0 ]] && JOBS="${CPU_COUNT}"
 
     # begin output
-    echo "${NAME} ${VERSION} (${JOBS} job$([[ ${JOBS} -gt 1 ]] && echo 's'))"
+    echo -n "${NAME} ${VERSION}"
 
     # list components
     if [[ "${LIST}" == true ]]; then
@@ -407,11 +407,15 @@ default install-dir: ${HOME}/toolchains/mingw-w64-${MINGW_W64_VER}-ucrt-gcc-${GC
         IFS=$'\n'
         COMPONENTS=($(sort <<< "${COMPONENTS_TEMP[*]}"))
         IFS="${OIFS}"
+        echo ""
         echo "Components:"
         for I in "${!COMPONENTS[@]}"; do
             echo "  ${COMPONENTS[$I]}"
         done
         return 0
+    else
+        # print job count when actually building
+        echo " (${JOBS} job$([[ ${JOBS} -gt 1 ]] && echo 's'))"
     fi
 
     # target args
